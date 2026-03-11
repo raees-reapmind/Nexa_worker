@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
+
 import 'package:emart_worker/model/currency_model.dart';
 import 'package:emart_worker/model/tax_model.dart';
 import 'package:emart_worker/themes/app_colors.dart';
@@ -6,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// ignore: constant_identifier_names
 const STORAGE_ROOT = 'emart';
 String senderId = '';
 String jsonNotificationFileURL = '';
@@ -21,7 +22,6 @@ const Order_Rating = 'items_review';
 const ChatWorker = 'chat_worker';
 const sections = "sections";
 const REFERRAL = 'referral';
-
 
 const dynamicNotification = 'dynamic_notification';
 
@@ -47,7 +47,7 @@ String placeholderImage = '';
 String appVersion = '';
 
 String durationToString(int minutes) {
-  return (minutes/60).toDouble().toStringAsFixed(2);
+  return (minutes / 60).toDouble().toStringAsFixed(2);
 }
 
 Future<void> makePhoneCall(String phoneNumber) async {
@@ -61,7 +61,8 @@ Future<void> makePhoneCall(String phoneNumber) async {
 late ProgressDialog progressDialog;
 
 showProgress(BuildContext context, String message, bool isDismissible) async {
-  progressDialog = ProgressDialog(context, type: ProgressDialogType.normal, isDismissible: isDismissible);
+  progressDialog = ProgressDialog(context,
+      type: ProgressDialogType.normal, isDismissible: isDismissible);
   progressDialog.style(
       message: message,
       borderRadius: 10.0,
@@ -73,7 +74,8 @@ showProgress(BuildContext context, String message, bool isDismissible) async {
           )),
       elevation: 10.0,
       insetAnimCurve: Curves.easeInOut,
-      messageTextStyle: const TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600));
+      messageTextStyle: const TextStyle(
+          color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600));
 
   await progressDialog.show();
 }
@@ -87,7 +89,8 @@ hideProgress() async {
 }
 
 String? validateEmail(String? value) {
-  String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value ?? '')) {
     return 'Please use a valid mail'.tr;
@@ -124,7 +127,9 @@ double getTaxValue({String? amount, TaxModel? taxModel}) {
     if (taxModel.type == "fix") {
       taxVal = double.parse(taxModel.tax.toString());
     } else {
-      taxVal = (double.parse(amount.toString()) * double.parse(taxModel.tax!.toString())) / 100;
+      taxVal = (double.parse(amount.toString()) *
+              double.parse(taxModel.tax!.toString())) /
+          100;
     }
   }
   return taxVal;

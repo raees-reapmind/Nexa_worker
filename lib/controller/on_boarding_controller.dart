@@ -30,16 +30,16 @@ class OnBoardingController extends GetxController {
   //       image: "assets/images/onBoarding_1.svg",
   //       id: "1",
   //       description: "Manage your work schedule, view bookings, and update their status - all in one place.",
-  //       title: "Welcome to eMart Worker!"));
+  //       title: "Welcome to Worker!"));
   //   onBoardingList.add(OnBoardingModel(
   //       image: "assets/images/onBoarding_2.svg",
   //       id: "2",
-  //       description: "Manage bookings, chat in multiple languages, and get things done efficiently with eMart Worker.",
+  //       description: "Manage bookings, chat in multiple languages, and get things done efficiently with Worker.",
   //       title: "Work Simplified, Globally."));
   //   onBoardingList.add(OnBoardingModel(
   //       image: "assets/images/onBoarding_3.svg",
   //       id: "3",
-  //       description: "See booking details, update status, and chat with ease. eMart Worker - Available in multiple languages.",
+  //       description: "See booking details, update status, and chat with ease. Worker - Available in multiple languages.",
   //       title: "Your All-in-One Work App."));
   //   update();
   //   isLoading.value = false;

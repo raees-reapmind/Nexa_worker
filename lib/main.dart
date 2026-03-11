@@ -88,21 +88,40 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     try {
       /// Wait for Firebase to initialize and set `_initialized` state to true
 
-      await FirebaseFirestore.instance.collection(Setting).doc("Version").get().then((value) {
+      await FirebaseFirestore.instance
+          .collection(Setting)
+          .doc("Version")
+          .get()
+          .then((value) {
         appVersion = value.data()!['app_version'].toString();
       });
-      await FirebaseFirestore.instance.collection(Setting).doc("googleMapKey").get().then((value) {
+      await FirebaseFirestore.instance
+          .collection(Setting)
+          .doc("googleMapKey")
+          .get()
+          .then((value) {
         GOOGLE_API_KEY = value.data()!['key'].toString();
       });
 
-      await FirebaseFirestore.instance.collection(Setting).doc("notification_setting").get().then((value) {
+      await FirebaseFirestore.instance
+          .collection(Setting)
+          .doc("notification_setting")
+          .get()
+          .then((value) {
         print(value.data());
         senderId = value.data()!['senderId'].toString();
         jsonNotificationFileURL = value.data()!['serviceJson'].toString();
       });
 
-      await FirebaseFirestore.instance.collection(Setting).doc("globalSettings").get().then((value) {
-        AppColors.colorPrimary = Color(int.parse(value.data()!['worker_app_color'].toString().replaceFirst("#", "0xff")));
+      await FirebaseFirestore.instance
+          .collection(Setting)
+          .doc("globalSettings")
+          .get()
+          .then((value) {
+        AppColors.colorPrimary = Color(int.parse(value
+            .data()!['worker_app_color']
+            .toString()
+            .replaceFirst("#", "0xff")));
       });
     } catch (e) {
       setState(() {
@@ -123,7 +142,8 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   void getCurrentAppTheme() async {
-    themeChangeProvider.darkTheme = await themeChangeProvider.darkThemePreference.getTheme();
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getTheme();
   }
 
   @override
@@ -136,7 +156,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
         builder: (context, value, child) {
           return GetMaterialApp(
             navigatorKey: navigatorKey,
-            title: 'eMart Worker',
+            title: 'Worker',
             debugShowCheckedModeBanner: false,
             theme: Styles.themeData(
                 themeChangeProvider.darkTheme == 0
