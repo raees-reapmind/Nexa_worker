@@ -21,8 +21,8 @@ class User with ChangeNotifier {
   UserBankDetails userBankDetails;
   dynamic walletAmount;
   Timestamp? createdAt;
-  num reviewsCount;
-  num reviewsSum;
+  dynamic reviewsCount;
+  dynamic reviewsSum;
 
   User({
     this.email = '',
@@ -44,7 +44,8 @@ class User with ChangeNotifier {
     this.reviewsSum = 0,
   })  : lastOnlineTimestamp = lastOnlineTimestamp ?? Timestamp.now(),
         userBankDetails = userBankDetails ?? UserBankDetails(),
-        appIdentifier = 'Flutter eMart Provider Dashboard ${Platform.operatingSystem}',
+        appIdentifier =
+            'Flutter eMart Provider Dashboard ${Platform.operatingSystem}',
         location = location ?? UserLocation();
 
   String fullName() {
@@ -57,17 +58,24 @@ class User with ChangeNotifier {
       email: parsedJson['email'] ?? '',
       firstName: parsedJson['firstName'] ?? '',
       lastName: parsedJson['lastName'] ?? '',
-      active: ((parsedJson.containsKey('active')) ? parsedJson['active'] : parsedJson['isActive']) ?? false,
+      active: ((parsedJson.containsKey('active'))
+              ? parsedJson['active']
+              : parsedJson['isActive']) ??
+          false,
       lastOnlineTimestamp: parsedJson['lastOnlineTimestamp'],
       phoneNumber: parsedJson['phoneNumber'] ?? '',
       userID: parsedJson['id'] ?? parsedJson['userID'] ?? '',
       profilePictureURL: parsedJson['profilePictureURL'] ?? '',
       fcmToken: parsedJson['fcmToken'] ?? '',
-      location: parsedJson.containsKey('location') ? UserLocation.fromJson(parsedJson['location']) : UserLocation(),
+      location: parsedJson.containsKey('location')
+          ? UserLocation.fromJson(parsedJson['location'])
+          : UserLocation(),
       photos: parsedJson['photos'] ?? [].cast<dynamic>(),
       role: parsedJson['role'] ?? '',
       createdAt: parsedJson['createdAt'],
-      userBankDetails: parsedJson.containsKey('userBankDetails') ? UserBankDetails.fromJson(parsedJson['userBankDetails']) : UserBankDetails(),
+      userBankDetails: parsedJson.containsKey('userBankDetails')
+          ? UserBankDetails.fromJson(parsedJson['userBankDetails'])
+          : UserBankDetails(),
       reviewsCount: parsedJson['reviewsCount'] ?? 0,
       reviewsSum: parsedJson['reviewsSum'] ?? 0,
     );
@@ -135,7 +143,13 @@ class UserSettings {
 
   bool reststatus;
 
-  UserSettings({this.pushNewMessages = false, this.orderUpdates = false, this.newArrivals = false, this.promotions = false, this.photos = false, this.reststatus = false});
+  UserSettings(
+      {this.pushNewMessages = false,
+      this.orderUpdates = false,
+      this.newArrivals = false,
+      this.promotions = false,
+      this.photos = false,
+      this.reststatus = false});
 
   factory UserSettings.fromJson(Map<dynamic, dynamic> parsedJson) {
     return UserSettings(
@@ -148,7 +162,14 @@ class UserSettings {
   }
 
   Map<String, dynamic> toJson() {
-    return {'pushNewMessages': pushNewMessages, 'orderUpdates': orderUpdates, 'newArrivals': newArrivals, 'promotions': promotions, 'photos': photos, 'reststatus': reststatus};
+    return {
+      'pushNewMessages': pushNewMessages,
+      'orderUpdates': orderUpdates,
+      'newArrivals': newArrivals,
+      'promotions': promotions,
+      'photos': photos,
+      'reststatus': reststatus
+    };
   }
 }
 

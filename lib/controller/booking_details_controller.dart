@@ -18,7 +18,6 @@ class BookingDetailsController extends GetxController {
   Rx<DateTime> selectedDateTime = DateTime.now().obs;
   Rx<TextEditingController> dateTimeController = TextEditingController().obs;
 
-
   RxDouble subTotal = 0.0.obs;
   RxDouble price = 0.0.obs;
   RxDouble discount = 0.0.obs;
@@ -28,13 +27,14 @@ class BookingDetailsController extends GetxController {
   getArgument() async {
     dynamic argumentData = Get.arguments;
     if (argumentData != null) {
+      debugPrint(' argumentData[orderId] : ${argumentData['orderId']}');
       orderId.value = argumentData['orderId'];
     }
-    await FireStoreUtils().getReviewByProviderServiceId(orderId.toString()).then((value) {
+    await FireStoreUtils()
+        .getReviewByProviderServiceId(orderId.toString())
+        .then((value) {
       ratingService.value = value;
     });
     update();
   }
-
-
 }
